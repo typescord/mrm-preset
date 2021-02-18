@@ -21,7 +21,7 @@ module.exports = function task() {
 			.save();
 
 		pkg.setScript('build', 'tsc -p tsconfig.prod.json');
-		dependencies.push((jestConfig.preset = 'ts-jest'));
+		dependencies.push((jestConfig.preset = 'ts-jest'), '@types/jest');
 	}
 	pkg.set('jest', jestConfig).save();
 
