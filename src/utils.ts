@@ -13,6 +13,8 @@ const PackagePropertiesOrder = [
 	'prettier',
 	'scripts',
 	'engines',
+	'author',
+	'maintainers',
 	'license',
 	'repository',
 	'homepage',
