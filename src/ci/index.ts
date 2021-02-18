@@ -15,7 +15,7 @@ module.exports = function task() {
 	const version = pkg.get('engines.node', '>=15.0.0');
 	const versions = NODE_MAJOR_VERSIONS.filter((nodeVersion) => satisfies(`${nodeVersion}.0.0`, version));
 	let singleVersion = versions.length === 0 ? minVersion(version)?.version : undefined;
-	if (!singleVersion && version.length === 1) {
+	if (!singleVersion && versions.length === 1) {
 		singleVersion = versions[0];
 	}
 	const usingYarn = isUsingYarn();
@@ -25,16 +25,16 @@ module.exports = function task() {
 		.merge({
 			name: 'Continuous Integration',
 			on: ['push', 'pull_request'],
-			strategy: singleVersion
-				? undefined
-				: {
-						matrix: {
-							'node-version': versions,
-						},
-				  },
 			jobs: {
 				main: {
-					'runs-on': 'ubunuto-latest',
+					'runs-on': 'ubuntu-latest',
+					strategy: singleVersion
+						? undefined
+						: {
+								matrix: {
+									'node-version': versions,
+								},
+						  },
 					steps: [
 						{ uses: 'actions/checkout@v2' },
 						{

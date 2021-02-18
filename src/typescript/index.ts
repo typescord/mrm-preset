@@ -4,7 +4,6 @@ import { execCommand, format, install, isUsingYarnBerry } from '../utils';
 import tsConfig from './_tsconfig.json';
 
 const dependencies = ['typescript', '@types/node'];
-const EslintRcPropertiesOrder = ['root', 'extends', 'plugins', 'parserOptions', 'rules', 'env'];
 
 module.exports = function task() {
 	const pkg = packageJson().setScript('build', 'tsc');
@@ -14,7 +13,7 @@ module.exports = function task() {
 	const eslintRc = yaml('.eslintrc.yml');
 	if (eslintRc.exists() && !eslintRc.get('parserOptions.project')) {
 		pkg.setScript('lint', 'eslint . --ext ts').save();
-		const data = eslintRc.merge({ parserOptions: { project: 'tsconfig.json' } }).get();
+		eslintRc.merge({ parserOptions: { project: 'tsconfig.json' } }).save();
 	}
 
 	install(dependencies);
