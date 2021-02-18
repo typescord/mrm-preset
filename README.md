@@ -30,7 +30,8 @@ yarn mrm all # or task1 task2 etc.
 
 ### Available tasks
 
-- **all** (alias) : runs all the following tasks
+- **all** (alias) : runs respectively **license**, **gitignore**, **editorconfig**, **beauty**, **package**, **typescript**, **jest** and **ci**
+- **base** (alias) : runs respectively **license**, **gitignore**, **editorconfig**, **beauty** and **package**
 - **beauty** : setups ESLint and Prettier
 - **ci** : setups GitHub Actions
 - **editorconfig** : setups a EditorConfig file
