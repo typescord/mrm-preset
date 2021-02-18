@@ -1,16 +1,16 @@
 import { dirname } from 'path';
-import { json, packageJson } from 'mrm-core';
+import { json, packageJson, yaml } from 'mrm-core';
 
 import { format, install } from '../utils';
 
 module.exports = function task() {
 	const dependencies = ['jest'];
-	const tsConfig = json('tsconfig.json');
 	const pkg = packageJson();
 	const jestConfig: Record<string, string> = { testEnvironment: 'node' };
 
 	pkg.setScript('test', 'jest');
 
+	const tsConfig = json('tsconfig.json');
 	if (tsConfig.exists()) {
 		const include = tsConfig.get('include')?.[0];
 		const testDirectory = `${include ? dirname('include') : 'src/**'}/__tests__`;
@@ -24,6 +24,11 @@ module.exports = function task() {
 		dependencies.push((jestConfig.preset = 'ts-jest'));
 	}
 	pkg.set('jest', jestConfig).save();
+
+	const eslintRc = yaml('.eslintrc.yml');
+	if (eslintRc.exists()) {
+		eslintRc.merge({ env: { jest: true } }).save();
+	}
 
 	install(dependencies);
 	format(['tsconfig.json', 'tsconfig.prod.json', 'package.json']);

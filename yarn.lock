@@ -255,7 +255,7 @@ __metadata:
     eslint-plugin-prettier: ^3.3.1
     eslint-plugin-simple-import-sort: ^7.0.0
     eslint-plugin-sonarjs: ^0.6.0
-    eslint-plugin-unicorn: ^28.0.1
+    eslint-plugin-unicorn: ^28.0.2
     mrm-core: ^4.6.0
     prettier: ^2.2.1
     semver: ^7.3.4
@@ -958,9 +958,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-unicorn@npm:^28.0.1":
-  version: 28.0.1
-  resolution: "eslint-plugin-unicorn@npm:28.0.1"
+"eslint-plugin-unicorn@npm:^28.0.2":
+  version: 28.0.2
+  resolution: "eslint-plugin-unicorn@npm:28.0.2"
   dependencies:
     ci-info: ^2.0.0
     clean-regexp: ^1.0.0
@@ -977,7 +977,7 @@ __metadata:
     semver: ^7.3.4
   peerDependencies:
     eslint: ">=7.17.0"
-  checksum: d6b3a242318586bf9877eccab8ff534947d319649afbd08faee5956f8fd52e74f85de0c83daa169f511b656577151ee2760e0e16c1b0e0444d7a9b06f25ef65b
+  checksum: 15d9802fe9036661fd4300705f096f7d30b2bb777e591ad966945eeba335a9e29b186d6096741d293cdf4a7d137dd0f30c0ff9eaa98dd82d41c7235660adbcf2
   languageName: node
   linkType: hard
 
