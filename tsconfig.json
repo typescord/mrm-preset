@@ -1,12 +1,9 @@
 {
-  "compilerOptions": {
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "strict": true,
-    "target": "ESNext",
-    "lib": ["ESNext"],
-    "outDir": "build",
-    "declaration": true
-  },
-  "include": ["src/**/*.ts"]
+	"extends": "./src/typescript/_tsconfig.json",
+	"compilerOptions": {
+		"module": "commonjs",
+		"outDir": "build",
+		"resolveJsonModule": true
+	},
+	"include": ["src/*/*.ts", "src/config.json"]
 }
