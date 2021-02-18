@@ -46,10 +46,12 @@ module.exports = function task() {
 		.save();
 
 	install(dependencies);
-	format(['.eslintrc.yml', 'package.json']);
 
 	if (usingYarnBerry) {
+		execCommand('yarn', ['add', 'eslint-import-resolver-node', '-D']);
 		execCommand('yarn', ['dlx', '@yarnpkg/pnpify', '--sdk', 'base']);
 	}
+
+	format(['.eslintrc.yml', 'package.json']);
 };
 module.exports.description = 'Adds ESLint and Prettier to the project';
