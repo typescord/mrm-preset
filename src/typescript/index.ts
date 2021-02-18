@@ -15,14 +15,6 @@ module.exports = function task() {
 	if (eslintRc.exists() && !eslintRc.get('parserOptions.project')) {
 		pkg.setScript('lint', 'eslint . --ext ts').save();
 		const data = eslintRc.merge({ parserOptions: { project: 'tsconfig.json' } }).get();
-
-		// reorder eslintrc properties
-		const keys = Object.keys(data);
-		eslintRc.unset(keys);
-		for (const key of keys.sort((a, b) => EslintRcPropertiesOrder.indexOf(a) - EslintRcPropertiesOrder.indexOf(b))) {
-			eslintRc.set(key, data[key]);
-		}
-		eslintRc.save();
 	}
 
 	install(dependencies);
