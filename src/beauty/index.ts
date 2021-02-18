@@ -41,7 +41,7 @@ module.exports = function task() {
 	packageJson()
 		.set('prettier', '@typescord/prettier-config')
 		.setScript('lint', `eslint . --ext ${tsConfigExists ? 'ts' : 'js'}`)
-		.setScript('lint-fix', `${usingYarn ? 'yarn lint' : 'npm run lint --'} --write`)
+		.setScript('lint-fix', `${usingYarn ? 'yarn lint' : 'npm run lint --'} --fix`)
 		.setScript('format', `prettier . ${usingYarn ? '' : '-- '}--write`)
 		.save();
 
