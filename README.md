@@ -15,7 +15,7 @@ Add script to `package.json` file:
 ```json
 {
 	"scripts": {
-		"mrm": "mrm --preset=@typescord/mrm-preset -i"
+		"mrm": "mrm --preset @typescord/mrm-preset"
 	}
 }
 ```
@@ -23,10 +23,11 @@ Add script to `package.json` file:
 Run tasks:
 
 ```sh
-npm run mrm all # or task1 task2 etc.
+npm run mrm all --interactive # or task1 task2 etc.
 # or with Yarn
-yarn mrm all # or task1 task2 etc.
+yarn mrm all --interactive # or task1 task2 etc.
 ```
+`--interactive`, `-i` : to have the questions in an interactive way (instead of `--config:foo bar --config:foo1 bar1 etc.`).
 
 ### Available tasks
 
