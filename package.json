@@ -1,6 +1,6 @@
 {
 	"name": "@typescord/mrm-preset",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "MRM preset used by Typescord for all core packages",
 	"main": "build/config.json",
 	"scripts": {
