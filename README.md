@@ -5,9 +5,9 @@ Typescord preset for [mrm](https://github.com/sapegin/mrm) to easily init projec
 ### Getting started
 
 ```sh
-npm install @typescord/mrm-preset --save-dev
+npm install mrm @typescord/mrm-preset --save-dev
 # or with Yarn
-yarn add @typescord/mrm-preset -D
+yarn add mrm @typescord/mrm-preset -D
 ```
 
 Add script to `package.json` file:
