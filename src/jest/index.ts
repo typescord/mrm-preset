@@ -1,4 +1,3 @@
-import { dirname } from 'path';
 import { json, packageJson, yaml } from 'mrm-core';
 
 import { format, install } from '../utils';
@@ -12,8 +11,7 @@ module.exports = function task() {
 
 	const tsConfig = json('tsconfig.json');
 	if (tsConfig.exists()) {
-		const include = tsConfig.get('include')?.[0];
-		const testDirectory = `${include ? dirname('include') : 'src/**'}/__tests__`;
+		const testDirectory = 'src/**/__tests__';
 		tsConfig.merge({ include: [`${testDirectory}/*.ts`] }).save();
 
 		json('tsconfig.prod.json')
