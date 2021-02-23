@@ -6,7 +6,7 @@ import tsConfig from './_tsconfig.json';
 const dependencies = ['typescript', '@types/node'];
 
 module.exports = function task() {
-	const pkg = packageJson().setScript('build', 'tsc');
+	const pkg = packageJson().setScript('build', 'tsc').set('types', 'build/index.d.ts');
 	json('tsconfig.json').merge(tsConfig).save();
 	lines('.gitignore').add(tsConfig.compilerOptions.outDir).save();
 

@@ -27,6 +27,7 @@ npm run mrm all --interactive # or task1 task2 etc.
 # or with Yarn
 yarn mrm all --interactive # or task1 task2 etc.
 ```
+
 `--interactive`, `-i` : to have the questions in an interactive way (instead of `--config:foo bar --config:foo1 bar1 etc.`).
 
 ### Available tasks

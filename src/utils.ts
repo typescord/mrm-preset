@@ -10,6 +10,7 @@ const PackagePropertiesOrder = [
 	'version',
 	'private',
 	'main',
+	'types',
 	'prettier',
 	'scripts',
 	'engines',
