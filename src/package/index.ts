@@ -78,9 +78,7 @@ module.exports.parameters = {
 	description: {
 		type: 'input',
 		message: 'Package description',
-		validate(input: string): boolean {
-			return !!input;
-		},
+		validate: inquirerRequired,
 	},
 	author: {
 		type: 'input',
@@ -126,7 +124,7 @@ module.exports.parameters = {
 		},
 	},
 	keywords: {
-		type: 'string',
+		type: 'input',
 		message: 'Package keywords (comma-separated)',
 		default: 'typescord',
 		validate: inquirerRequired,

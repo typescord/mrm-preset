@@ -1,12 +1,16 @@
 import { json, lines, packageJson, yaml } from 'mrm-core';
 
-import { execCommand, format, install, isUsingYarnBerry } from '../utils';
+import { execCommand, format, install, isUsingYarn, isUsingYarnBerry } from '../utils';
 import tsConfig from './_tsconfig.json';
 
-const dependencies = ['typescript', '@types/node'];
+const dependencies = ['typescript', '@types/node', 'rimraf'];
 
 module.exports = function task() {
-	const pkg = packageJson().setScript('build', 'tsc').set('types', 'build/index.d.ts');
+	const pkg = packageJson()
+		.setScript('prepublish', `${isUsingYarn() ? 'yarn' : 'npm run'} build`)
+		.setScript('build', 'rimraf build && tsc')
+		.set('types', 'build/index.d.ts')
+		.merge({ files: ['build'] });
 	json('tsconfig.json').merge(tsConfig).save();
 	lines('.gitignore').add(tsConfig.compilerOptions.outDir).save();
 

@@ -4,6 +4,7 @@
 	"description": "MRM preset used by Typescord for all core packages",
 	"main": "build/config.json",
 	"scripts": {
+		"prepublish": "yarn build",
 		"build": "tsc",
 		"lint": "eslint . --ext ts",
 		"lint-fix": "yarn lint --fix",

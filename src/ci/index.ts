@@ -24,10 +24,22 @@ module.exports = function task() {
 	yaml('.github/workflows/main.yml')
 		.merge({
 			name: 'Continuous Integration',
-			on: ['push', 'pull_request'],
+			on: {
+				push: {
+					branches: ['main'],
+					'paths-ignore': ['*.md', '*.txt', 'LICENSE', '.editorconfig', '.*ignore', '.vscode'],
+					'tags-ignore': ['*'],
+				},
+				pull_request: {
+					branches: ['*'],
+					'paths-ignore': ['*.md', '*.txt', 'LICENSE', '.editorconfig', '.*ignore', '.vscode'],
+				},
+			},
+
 			jobs: {
 				main: {
 					'runs-on': 'ubuntu-latest',
+
 					strategy: singleVersion
 						? undefined
 						: {
@@ -35,6 +47,7 @@ module.exports = function task() {
 									'node-version': versions,
 								},
 						  },
+
 					steps: [
 						{ uses: 'actions/checkout@v2' },
 						{
@@ -44,7 +57,9 @@ module.exports = function task() {
 								'node-version': singleVersion ?? '${{ matrix.node-version }}',
 							},
 						},
+
 						{ name: 'Install dependencies', run: usingYarn ? 'yarn install --immutable' : 'npm ci' },
+
 						pkg.getScript('lint') ? { name: 'Lint', run: `${scriptRunCmd} lint` } : undefined,
 						pkg.getScript('build')
 							? {

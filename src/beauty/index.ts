@@ -22,10 +22,19 @@ module.exports = function task() {
 	const usingYarn = isUsingYarn();
 	const tsConfig = json('tsconfig.json');
 	const tsConfigExists = tsConfig.exists();
+	const outDirectory = tsConfigExists ? tsConfig.get('compilerOptions.outDir') : undefined;
 
 	lines('.prettierignore')
-		.add(['.vscode', ...(usingYarnBerry ? ['.yarn', '.yarnrc.yml', '.pnp.*'] : [])])
+		.add([
+			'.vscode',
+			...(outDirectory ? [outDirectory] : []),
+			...(usingYarnBerry ? ['.yarn', '.yarnrc.yml', '.pnp.*'] : []),
+		])
 		.save();
+
+	if (outDirectory) {
+		lines('.eslintignore').add(outDirectory).save();
+	}
 
 	yaml('.eslintrc.yml')
 		.merge({
@@ -48,7 +57,7 @@ module.exports = function task() {
 	install(dependencies);
 
 	if (usingYarnBerry) {
-		execCommand('yarn', ['add', 'eslint-import-resolver-node', '-D']);
+		execCommand('yarn', ['add', '-D', 'eslint-import-resolver-node']);
 		execCommand('yarn', ['dlx', '@yarnpkg/pnpify', '--sdk', 'base']);
 	}
 

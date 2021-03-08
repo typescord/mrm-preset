@@ -32,8 +32,8 @@ yarn mrm all --interactive # or task1 task2 etc.
 
 ### Available tasks
 
-- **all** (alias) : runs respectively **license**, **gitignore**, **editorconfig**, **beauty**, **package**, **typescript**, **jest** and **ci**
-- **base** (alias) : runs respectively **license**, **gitignore**, **editorconfig**, **beauty** and **package**
+- **all** (alias) : runs respectively **license**, **gitignore**, **editorconfig**, **beauty**, **typescript**, **jest** and **ci**
+- **base** (alias) : runs respectively **license**, **gitignore**, **editorconfig** and **beauty**
 - **beauty** : setups ESLint and Prettier
 - **ci** : setups GitHub Actions
 - **editorconfig** : setups a EditorConfig file
@@ -41,4 +41,5 @@ yarn mrm all --interactive # or task1 task2 etc.
 - **jest** : setups Jest (and ts-jest if TypeScript is setup)
 - **license** : setups a MIT license
 - **package** : setups a complete package.json file
+- **release-please** : setups Release Please action
 - **typescript** : setups TypeScript

@@ -18,7 +18,7 @@ module.exports = function task() {
 			.merge({ extends: './tsconfig.json', exclude: [testDirectory] })
 			.save();
 
-		pkg.setScript('build', 'tsc -p tsconfig.prod.json');
+		pkg.setScript('build', 'rimraf && tsc -p tsconfig.prod.json');
 		dependencies.push((jestConfig.preset = 'ts-jest'), '@types/jest');
 	}
 	pkg.set('jest', jestConfig).save();
