@@ -32,9 +32,10 @@ yarn mrm all --interactive # or task1 task2 etc.
 
 ### Available tasks
 
-- **all** (alias) : runs respectively **license**, **gitignore**, **editorconfig**, **beauty**, **typescript**, **jest** and **ci**
-- **base** (alias) : runs respectively **license**, **gitignore**, **editorconfig** and **beauty**
+- **all** (alias) : runs respectively **license**, **gitignore**, **editorconfig**, **beauty**, **changelog**, **typescript**, **jest** and **ci**
+- **base** (alias) : runs respectively **license**, **gitignore**, **editorconfig**, **beauty** and **changelog**
 - **beauty** : setups ESLint and Prettier
+- **changelog**: setups a basic Changelog.md
 - **ci** : setups GitHub Actions
 - **editorconfig** : setups a EditorConfig file
 - **gitignore** : setups a Gitignore file

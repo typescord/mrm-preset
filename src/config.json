@@ -1,6 +1,6 @@
 {
 	"aliases": {
-		"base": ["license", "gitignore", "editorconfig", "beauty"],
-		"all": ["license", "gitignore", "editorconfig", "beauty", "typescript", "jest", "ci", "release-please"]
+		"base": ["license", "gitignore", "editorconfig", "beauty", "changelog"],
+		"all": ["license", "gitignore", "editorconfig", "beauty", "changelog", "typescript", "jest", "ci", "release-please"]
 	}
 }
