@@ -44,12 +44,12 @@ export function orderProperties<T extends Record<string, unknown>>(object: T, or
 	for (const key of Object.keys(object).sort((a, b) => order.indexOf(a) - order.indexOf(b)) as (keyof T)[]) {
 		ordered[key] = object[key];
 	}
-	return ordered as Required<T>;
+	return ordered as T;
 }
 
 export function format(files: string[]): void {
 	const pkg = packageJson();
-	if (!pkg.exists() || (!pkg.get('prettier') && !files.includes('package.json'))) {
+	if (!pkg.exists() || !(pkg.get('prettier') && files.includes('package.json'))) {
 		return;
 	}
 
