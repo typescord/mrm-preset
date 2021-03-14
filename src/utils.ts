@@ -1,9 +1,7 @@
 import { spawnSync } from 'child_process';
 import { Stats, statSync } from 'fs';
-import { platform } from 'os';
 import { packageJson } from 'mrm-core';
 
-const isUsingWindows = platform() === 'win32';
 const PackagePropertiesOrder = [
 	'name',
 	'description',
@@ -28,12 +26,8 @@ const PackagePropertiesOrder = [
 	'keywords',
 ];
 
-function escapeArguments(args: string[]): string[] {
-	return isUsingWindows ? args.map((arg) => arg.replaceAll('^', '^^^^')) : args;
-}
-
 export function execCommand(command: string, args: string[] = []): void {
-	spawnSync(isUsingWindows ? `${command}.cmd` : command, escapeArguments(args), {
+	spawnSync(command, args, {
 		stdio: 'inherit',
 		cwd: process.cwd(),
 	});
@@ -90,6 +84,6 @@ export function install(dependencies: string[]): void {
 	execCommand(usingYarn ? 'yarn' : 'npm', ['add', usingYarn ? '-D' : '--save-dev', ...dependencies]);
 }
 
-export function inquirerRequired(input: string): boolean {
-	return !!input;
+export function inquirerRequired(input: string | undefined): boolean {
+	return !!input?.trim();
 }
