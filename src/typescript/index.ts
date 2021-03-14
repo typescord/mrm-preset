@@ -7,7 +7,7 @@ const dependencies = ['typescript', '@types/node', 'rimraf'];
 
 module.exports = function task() {
 	const pkg = packageJson()
-		.setScript('prepublish', `${isUsingYarn() ? 'yarn' : 'npm run'} build`)
+		.setScript('prepublishOnly', `${isUsingYarn() ? 'yarn' : 'npm run'} build`)
 		.setScript('build', 'rimraf build && tsc')
 		.set('types', 'build/index.d.ts')
 		.merge({ files: ['build'] });
