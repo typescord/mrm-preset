@@ -14,7 +14,7 @@ module.exports = function task() {
 		minVersion(version)?.raw;
 	const usingYarn = isUsingYarn();
 
-	yaml('.github/workflows/main.yml')
+	yaml('.github/workflows/release-please.yml')
 		.merge({
 			name: 'Release Please',
 			on: {
@@ -32,7 +32,7 @@ module.exports = function task() {
 							with: {
 								token: '${{ secrets.GITHUB_TOKEN }}',
 								'release-type': 'node',
-								'pull-request-title-pattern': 'chore${scope}(release-${component}): v${version}',
+								'pull-request-title-pattern': 'chore${scope}: release${component} v${version}',
 								'bump-minor-pre-major': true,
 							},
 						},
