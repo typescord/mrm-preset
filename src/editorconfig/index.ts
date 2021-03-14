@@ -10,6 +10,7 @@ const defaults: Record<string, Record<string, string | boolean | number>> = {
 		indent_style: 'tab',
 		indent_size: 2,
 		tab_width: 2,
+		quote_type: 'single',
 	},
 	'*.yml': {
 		indent_style: 'space',
