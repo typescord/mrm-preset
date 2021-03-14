@@ -83,7 +83,7 @@ module.exports.parameters = {
 	author: {
 		type: 'input',
 		message: 'Package author',
-		default: 'typescord',
+		default: 'Typescord',
 		validate: inquirerRequired,
 	},
 	main: {
