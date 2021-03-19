@@ -1,5 +1,13 @@
 # Changelog
 
+### [2.0.4](https://www.github.com/typescord/mrm-preset/compare/v2.0.3...v2.0.4) (2021-03-19)
+
+
+### Bug Fixes
+
+* **ci:** on push/pr paths ([ce97fd6](https://www.github.com/typescord/mrm-preset/commit/ce97fd6a8547205791f7cae69526249fd5d517d1))
+* **package:** replace deprecated prepublish ([797288e](https://www.github.com/typescord/mrm-preset/commit/797288efc9f5c5f11ec2e702eba7ff466dd3d8ee))
+
 ### [2.0.3](https://www.github.com/typescord/mrm-preset/compare/v2.0.2...v2.0.3) (2021-03-14)
 
 
