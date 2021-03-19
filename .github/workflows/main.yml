@@ -2,23 +2,11 @@ name: Continuous Integration
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - '*.md'
-      - '*.txt'
-      - LICENSE
-      - .editorconfig
-      - .*ignore
-      - .vscode
+    paths-ignore: ['*.{md,txt}', LICENSE, .*config, .vscode]
     tags-ignore: ['*']
   pull_request:
     branches: ['*']
-    paths-ignore:
-      - '*.md'
-      - '*.txt'
-      - LICENSE
-      - .editorconfig
-      - .*ignore
-      - .vscode
+    paths-ignore: ['*.{md,txt}', LICENSE, .*config, .vscode]
 
 jobs:
   main:

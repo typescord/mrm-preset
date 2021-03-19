@@ -27,12 +27,12 @@ module.exports = function task() {
 			on: {
 				push: {
 					branches: ['main'],
-					'paths-ignore': ['*.md', '*.txt', 'LICENSE', '.editorconfig', '.*ignore', '.vscode'],
+					'paths-ignore': ['*.{md,txt}', 'LICENSE', '.*config', '.vscode'],
 					'tags-ignore': ['*'],
 				},
 				pull_request: {
 					branches: ['*'],
-					'paths-ignore': ['*.md', '*.txt', 'LICENSE', '.editorconfig', '.*ignore', '.vscode'],
+					'paths-ignore': ['*.{md,txt}', 'LICENSE', '.*config', '.vscode'],
 				},
 			},
 
@@ -60,7 +60,6 @@ module.exports = function task() {
 
 						{ name: 'Install dependencies', run: usingYarn ? 'yarn install --immutable' : 'npm ci' },
 
-						pkg.getScript('lint') ? { name: 'Lint', run: `${scriptRunCmd} lint` } : undefined,
 						pkg.getScript('build')
 							? {
 									name: 'Build',
@@ -68,6 +67,7 @@ module.exports = function task() {
 							  }
 							: undefined,
 						pkg.getScript('test') ? { name: 'Test', run: `${scriptRunCmd} lint` } : undefined,
+						pkg.getScript('lint') ? { name: 'Lint', run: `${scriptRunCmd} lint` } : undefined,
 					],
 				},
 			},
