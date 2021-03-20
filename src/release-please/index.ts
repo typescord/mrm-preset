@@ -35,6 +35,57 @@ module.exports = function task() {
 								'default-branch': 'main',
 								'pull-request-title-pattern': 'chore${scope}: release${component} v${version}',
 								'bump-minor-pre-major': true,
+								'changelog-types': JSON.stringify([
+									{
+										type: 'feat',
+										section: 'Features',
+									},
+									{
+										type: 'fix',
+										section: 'Bug Fixes',
+									},
+									{
+										type: 'perf',
+										section: 'Performance Improvements',
+									},
+									{
+										type: 'deps',
+										section: 'Dependencies',
+									},
+									{
+										type: 'revert',
+										section: 'Reverts',
+									},
+									{
+										type: 'docs',
+										section: 'Documentation',
+									},
+									{
+										type: 'style',
+										section: 'Styles',
+										hidden: true,
+									},
+									{
+										type: 'chore',
+										section: 'Miscellaneous Chores',
+										hidden: true,
+									},
+									{
+										type: 'refactor',
+										section: 'Code Refactoring',
+										hidden: true,
+									},
+									{
+										type: 'test',
+										section: 'Tests',
+										hidden: true,
+									},
+									{
+										type: 'ci',
+										section: 'Continuous Integration',
+										hidden: true,
+									},
+								]),
 							},
 						},
 						{
