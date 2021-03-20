@@ -94,7 +94,11 @@ module.exports = function task() {
 						},
 						{
 							name: `Use Node.js v${maxMajorVersion}`,
-							uses: 'actions/checkout@v2',
+							uses: 'actions/setup-node@v2',
+							with: {
+								'node-version': maxMajorVersion,
+								'registry-url': 'https://registry.npmjs.org',
+							},
 							if: '${{ steps.release.outputs.release_created }}',
 						},
 						{
