@@ -1,9 +1,10 @@
 {
 	"extends": "./src/typescript/_tsconfig.json",
 	"compilerOptions": {
-		"module": "commonjs",
 		"outDir": "build",
-		"resolveJsonModule": true
+		"resolveJsonModule": true,
+		"target": "ES2019",
+		"lib": ["ES2019"]
 	},
 	"include": ["src/*/*.ts", "src/config.json"]
 }
