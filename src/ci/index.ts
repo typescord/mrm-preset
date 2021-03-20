@@ -38,7 +38,7 @@ module.exports = function task() {
 
 			jobs: {
 				main: {
-					'runs-on': 'ubuntu-latest',
+					'runs-on': 'ubuntu-20.04',
 
 					strategy: singleVersion
 						? undefined
