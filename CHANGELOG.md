@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.1.0](https://www.github.com/typescord/mrm-preset/compare/v2.0.5...v2.1.0) (2021-03-20)
+
+
+### Features
+
+* **ci:** explicit ubuntu version ([c1e0cfc](https://www.github.com/typescord/mrm-preset/commit/c1e0cfcae95741bea315b05dc316ac4a390fcd46))
+* **release-please:** changelog-types ([dbd4521](https://www.github.com/typescord/mrm-preset/commit/dbd452104a6eb3c4594d29936979ffc175d66179))
+* **release-please:** improve template ([38018ac](https://www.github.com/typescord/mrm-preset/commit/38018ac7e55527cc1ad94489b1cc74ee16bd942a))
+
+
+### Bug Fixes
+
+* **release-please:** fix errors ([c012282](https://www.github.com/typescord/mrm-preset/commit/c012282fc67aa5cd41fb0ed173437028f13edeec))
+
 ### [2.0.5](https://www.github.com/typescord/mrm-preset/compare/v2.0.4...v2.0.5) (2021-03-20)
 
 
