@@ -1,61 +1,61 @@
 {
-	"name": "@typescord/mrm-preset",
-	"description": "MRM preset used by Typescord for all core packages",
-	"version": "2.0.2",
-	"main": "build/config.json",
-	"prettier": "@typescord/prettier-config",
-	"scripts": {
-		"prepublish": "yarn build",
-		"build": "rimraf build && tsc",
-		"lint": "eslint . --ext ts",
-		"lint-fix": "yarn lint --fix",
-		"format": "prettier . --write",
-		"mrm": "mrm --dir ./build"
-	},
-	"engines": {
-		"node": ">=12.0.0"
-	},
-	"author": "Typescord",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/typescord/mrm-preset.git"
-	},
-	"homepage": "https://github.com/typescord/mrm-preset#readme",
-	"bugs": {
-		"url": "https://github.com/typescord/mrm-preset/issues"
-	},
-	"dependencies": {
-		"mrm-core": "^4.7.0",
-		"semver": "^7.3.4"
-	},
-	"devDependencies": {
-		"@types/node": "^14.14.34",
-		"@types/semver": "^7.3.4",
-		"@typescord/eslint-config": "^0.1.6",
-		"@typescord/prettier-config": "^0.1.2",
-		"@typescript-eslint/eslint-plugin": "^4.17.0",
-		"@typescript-eslint/parser": "^4.17.0",
-		"eslint": "^7.22.0",
-		"eslint-config-prettier": "^7.2.0",
-		"eslint-import-resolver-node": "^0.3.4",
-		"eslint-plugin-import": "^2.22.1",
-		"eslint-plugin-prettier": "^3.3.1",
-		"eslint-plugin-simple-import-sort": "^7.0.0",
-		"eslint-plugin-sonarjs": "^0.6.0",
-		"eslint-plugin-unicorn": "^28.0.2",
-		"lodash": "^4.17.21",
-		"mrm": "^2.6.0",
-		"prettier": "^2.2.1",
-		"rimraf": "^3.0.2",
-		"typescript": "^4.2.3"
-	},
-	"files": [
-		"build"
-	],
-	"keywords": [
-		"mrm-preset",
-		"mrm",
-		"typescord"
-	]
+  "name": "@typescord/mrm-preset",
+  "description": "MRM preset used by Typescord for all core packages",
+  "version": "2.0.5",
+  "main": "build/config.json",
+  "prettier": "@typescord/prettier-config",
+  "scripts": {
+    "prepublish": "yarn build",
+    "build": "rimraf build && tsc",
+    "lint": "eslint . --ext ts",
+    "lint-fix": "yarn lint --fix",
+    "format": "prettier . --write",
+    "mrm": "mrm --dir ./build"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "author": "Typescord",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/typescord/mrm-preset.git"
+  },
+  "homepage": "https://github.com/typescord/mrm-preset#readme",
+  "bugs": {
+    "url": "https://github.com/typescord/mrm-preset/issues"
+  },
+  "dependencies": {
+    "mrm-core": "^4.7.0",
+    "semver": "^7.3.4"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.34",
+    "@types/semver": "^7.3.4",
+    "@typescord/eslint-config": "^0.1.6",
+    "@typescord/prettier-config": "^0.1.2",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-import-resolver-node": "^0.3.4",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sonarjs": "^0.6.0",
+    "eslint-plugin-unicorn": "^28.0.2",
+    "lodash": "^4.17.21",
+    "mrm": "^2.6.0",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.2.3"
+  },
+  "files": [
+    "build"
+  ],
+  "keywords": [
+    "mrm-preset",
+    "mrm",
+    "typescord"
+  ]
 }

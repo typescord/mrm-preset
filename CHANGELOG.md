@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.0.5](https://www.github.com/typescord/mrm-preset/compare/v2.0.4...v2.0.5) (2021-03-20)
+
+
+### Bug Fixes
+
+* improve retrocompatibility ([68f7e2f](https://www.github.com/typescord/mrm-preset/commit/68f7e2fe99a3cae5644327693f28fb1c4935e9ad))
+
 ### [2.0.4](https://www.github.com/typescord/mrm-preset/compare/v2.0.3...v2.0.4) (2021-03-19)
 
 
