@@ -24,7 +24,7 @@ module.exports = function task() {
 			},
 			jobs: {
 				'release-please': {
-					'runs-on': 'ubuntu-latest',
+					'runs-on': 'ubuntu-20.04',
 					steps: [
 						{
 							uses: 'GoogleCloudPlatform/release-please-action@v2',
@@ -32,6 +32,7 @@ module.exports = function task() {
 							with: {
 								token: '${{ secrets.GITHUB_TOKEN }}',
 								'release-type': 'node',
+								'default-branch': 'main',
 								'pull-request-title-pattern': 'chore${scope}: release${component} v${version}',
 								'bump-minor-pre-major': true,
 							},
