@@ -41,6 +41,7 @@ const defaults = [
 const yarn = [
 	'# Yarn 2',
 	'.yarn/*',
+	'!.yarn/patches',
 	'!.yarn/releases',
 	'!.yarn/plugins',
 	'!.yarn/sdks',
