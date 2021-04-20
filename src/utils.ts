@@ -34,14 +34,14 @@ export function cleanObject<T extends Record<PropertyKey, unknown>>(object: T): 
 		// eslint-disable-next-line unicorn/no-array-reduce
 		const actualKeys = keys.reduce((base, key) => (base[key] ??= {}), finalObject);
 
-		// eslint-disable-next-line eqeqeq, unicorn/no-null
-		if (value == null) {
+		// eslint-disable-next-line eqeqeq
+		if (value == undefined) {
 			continue;
 		}
 
 		if (Array.isArray(value)) {
-			// eslint-disable-next-line eqeqeq, unicorn/no-null
-			actualKeys[lastKey] = value.filter((element) => element != null);
+			// eslint-disable-next-line eqeqeq
+			actualKeys[lastKey] = value.filter((element) => element != undefined);
 		} else {
 			actualKeys[lastKey] = value;
 		}
