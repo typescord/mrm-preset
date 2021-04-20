@@ -2,6 +2,8 @@ import { spawnSync } from 'child_process';
 import { Stats, statSync } from 'fs';
 import { packageJson } from 'mrm-core';
 
+type ArrayOrObject = unknown[] | Record<PropertyKey, unknown>;
+
 const PackagePropertiesOrder = [
 	'name',
 	'description',
@@ -26,41 +28,25 @@ const PackagePropertiesOrder = [
 	'keywords',
 ];
 
-export function cleanObject<T extends Record<PropertyKey, unknown>>(object: T): T {
-	const finalObject: Record<PropertyKey, any> = {};
-
-	for (const [keys, value] of deepIterOverObject(object)) {
-		const lastKey = keys.pop()!;
-		// eslint-disable-next-line unicorn/no-array-reduce
-		const actualKeys = keys.reduce((base, key) => (base[key] ??= {}), finalObject);
-
+function* cleanArray(array: unknown[]): Generator {
+	for (const value of array) {
 		// eslint-disable-next-line eqeqeq
-		if (value == undefined) {
-			continue;
-		}
-
-		if (Array.isArray(value)) {
-			// eslint-disable-next-line eqeqeq
-			actualKeys[lastKey] = value.filter((element) => element != undefined);
-		} else {
-			actualKeys[lastKey] = value;
+		if (value != undefined) {
+			yield typeof value === 'object' ? cleanObjectOrArray(value as ArrayOrObject) : value;
 		}
 	}
-
-	return finalObject;
 }
 
-export function* deepIterOverObject(
-	object: Record<PropertyKey, unknown>,
-	trailingKeys: string[] = [],
-): Generator<readonly [[...string[]], unknown]> {
-	for (const [key, value] of Object.entries(object)) {
-		if (typeof value === 'object' && !Array.isArray(value) && value !== null) {
-			yield* deepIterOverObject(value as Record<PropertyKey, unknown>, [...trailingKeys, key]);
-		} else {
-			yield [[...trailingKeys, key], value];
+function* cleanObject(object: Record<PropertyKey, unknown>): Generator<unknown[]> {
+	for (const entry of cleanArray(Object.entries(object)) as Iterable<unknown[]>) {
+		if (entry.length === 2) {
+			yield entry;
 		}
 	}
+}
+
+export function cleanObjectOrArray(object: ArrayOrObject): ArrayOrObject {
+	return Array.isArray(object) ? [...cleanArray(object)] : Object.fromEntries(cleanObject(object));
 }
 
 export function execCommand(command: string, args: string[] = []): void {

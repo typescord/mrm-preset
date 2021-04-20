@@ -1,7 +1,7 @@
 import { packageJson, yaml } from 'mrm-core';
 import { minVersion, satisfies } from 'semver';
 
-import { cleanObject, format, isUsingYarn } from '../utils';
+import { cleanObjectOrArray, format, isUsingYarn } from '../utils';
 
 const NODE_MAJOR_VERSIONS = Array.from({ length: 16 }, (_, index) => (index + 1).toString());
 
@@ -23,7 +23,7 @@ module.exports = function task() {
 
 	yaml('.github/workflows/main.yml')
 		.merge(
-			cleanObject({
+			cleanObjectOrArray({
 				name: 'Continuous Integration',
 				on: {
 					push: {
