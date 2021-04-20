@@ -55,7 +55,7 @@ export function* deepIterOverObject(
 	trailingKeys: string[] = [],
 ): Generator<readonly [[...string[]], unknown]> {
 	for (const [key, value] of Object.entries(object)) {
-		if (typeof value === 'object' && !Array.isArray(value)) {
+		if (typeof value === 'object' && !Array.isArray(value) && value !== null) {
 			yield* deepIterOverObject(value as Record<PropertyKey, unknown>, [...trailingKeys, key]);
 		} else {
 			yield [[...trailingKeys, key], value];
