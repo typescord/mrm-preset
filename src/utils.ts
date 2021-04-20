@@ -26,6 +26,43 @@ const PackagePropertiesOrder = [
 	'keywords',
 ];
 
+export function cleanObject<T extends Record<string | number | symbol, unknown>>(object: T): T {
+	const finalObject: Record<string | number | symbol, any> = {};
+
+	for (const [keys, value] of deepIterOverObject(object)) {
+		const lastKey = keys.pop()!;
+		// eslint-disable-next-line unicorn/no-array-reduce
+		const actualKeys = keys.reduce((base, key) => (base[key] ??= {}), finalObject);
+
+		// eslint-disable-next-line eqeqeq, unicorn/no-null
+		if (value == null) {
+			continue;
+		}
+
+		if (Array.isArray(value)) {
+			// eslint-disable-next-line eqeqeq, unicorn/no-null
+			actualKeys[lastKey] = value.filter((element) => element != null);
+		} else {
+			actualKeys[lastKey] = value;
+		}
+	}
+
+	return finalObject;
+}
+
+export function* deepIterOverObject(
+	object: Record<string | number | symbol, unknown>,
+	trailingKeys: string[] = [],
+): Generator<readonly [[...string[]], unknown]> {
+	for (const [key, value] of Object.entries(object)) {
+		if (typeof value === 'object' && !Array.isArray(value)) {
+			yield* deepIterOverObject(value as Record<string | number | symbol, unknown>, [...trailingKeys, key]);
+		} else {
+			yield [[...trailingKeys, key], value];
+		}
+	}
+}
+
 export function execCommand(command: string, args: string[] = []): void {
 	spawnSync(command, args, {
 		stdio: 'inherit',
