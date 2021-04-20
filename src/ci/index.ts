@@ -3,7 +3,7 @@ import { minVersion, satisfies } from 'semver';
 
 import { cleanObject, format, isUsingYarn } from '../utils';
 
-const NODE_MAJOR_VERSIONS = Array.from({ length: 15 }, (_, index) => (index + 1).toString());
+const NODE_MAJOR_VERSIONS = Array.from({ length: 16 }, (_, index) => (index + 1).toString());
 
 module.exports = function task() {
 	const pkg = packageJson();
