@@ -64,6 +64,7 @@ function defaultMain(paths: string[]): string {
 	return 'build/index.js';
 }
 const tsConfig = json('tsconfig.json');
+
 module.exports.parameters = {
 	name: {
 		type: 'input',
@@ -104,8 +105,8 @@ module.exports.parameters = {
 	},
 	nodeVersion: {
 		type: 'input',
-		message: 'Package NodeJS engine version',
-		default: '>=15.0.0',
+		message: "Package Node.js's engine version",
+		default: '>=15.0.0 <17',
 		validate(input: string): true | string {
 			return validRange(input) ? true : 'The input is not a valid SemVer range.';
 		},
