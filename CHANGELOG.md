@@ -1,5 +1,13 @@
 # Changelog
 
+### [2.1.1](https://www.github.com/typescord/mrm-preset/compare/v2.1.0...v2.1.1) (2021-04-20)
+
+
+### Bug Fixes
+
+* **gitignore:** dont ignore yarn patches ([b69ad18](https://www.github.com/typescord/mrm-preset/commit/b69ad18fcbb430d75725e944617d53ac47b5e7ec))
+* null in yml files ([#10](https://www.github.com/typescord/mrm-preset/issues/10)) ([2fdbd10](https://www.github.com/typescord/mrm-preset/commit/2fdbd10a17d050f79bc99d16f44a0d4bd41c827c))
+
 ## [2.1.0](https://www.github.com/typescord/mrm-preset/compare/v2.0.5...v2.1.0) (2021-03-20)
 
 
