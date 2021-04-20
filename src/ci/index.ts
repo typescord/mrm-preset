@@ -1,9 +1,9 @@
 import { packageJson, yaml } from 'mrm-core';
 import { minVersion, satisfies } from 'semver';
 
-import { format, isUsingYarn } from '../utils';
+import { cleanObjectOrArray, format, isUsingYarn } from '../utils';
 
-const NODE_MAJOR_VERSIONS = Array.from({ length: 15 }, (_, index) => (index + 1).toString());
+const NODE_MAJOR_VERSIONS = Array.from({ length: 16 }, (_, index) => (index + 1).toString());
 
 module.exports = function task() {
 	const pkg = packageJson();
@@ -22,56 +22,58 @@ module.exports = function task() {
 	const scriptRunCmd = usingYarn ? 'yarn' : 'npm run';
 
 	yaml('.github/workflows/main.yml')
-		.merge({
-			name: 'Continuous Integration',
-			on: {
-				push: {
-					branches: ['main'],
-					'paths-ignore': ['*.{md,txt}', 'LICENSE', '.*config', '.vscode'],
-					'tags-ignore': ['*'],
+		.merge(
+			cleanObjectOrArray({
+				name: 'Continuous Integration',
+				on: {
+					push: {
+						branches: ['main'],
+						'paths-ignore': ['*.{md,txt}', 'LICENSE', '.*config', '.vscode'],
+						'tags-ignore': ['*'],
+					},
+					pull_request: {
+						branches: ['*'],
+						'paths-ignore': ['*.{md,txt}', 'LICENSE', '.*config', '.vscode'],
+					},
 				},
-				pull_request: {
-					branches: ['*'],
-					'paths-ignore': ['*.{md,txt}', 'LICENSE', '.*config', '.vscode'],
-				},
-			},
 
-			jobs: {
-				main: {
-					'runs-on': 'ubuntu-20.04',
+				jobs: {
+					main: {
+						'runs-on': 'ubuntu-20.04',
 
-					strategy: singleVersion
-						? undefined
-						: {
-								matrix: {
-									'node-version': versions,
+						strategy: singleVersion
+							? undefined
+							: {
+									matrix: {
+										'node-version': versions,
+									},
+							  },
+
+						steps: [
+							{ uses: 'actions/checkout@v2' },
+							{
+								name: `Use Node.js v${singleVersion ?? '${{ matrix.node-version }}'}`,
+								uses: 'actions/setup-node@v2',
+								with: {
+									'node-version': singleVersion ?? '${{ matrix.node-version }}',
 								},
-						  },
-
-					steps: [
-						{ uses: 'actions/checkout@v2' },
-						{
-							name: `Use Node.js v${singleVersion ?? '${{ matrix.node-version }}'}`,
-							uses: 'actions/setup-node@v2',
-							with: {
-								'node-version': singleVersion ?? '${{ matrix.node-version }}',
 							},
-						},
 
-						{ name: 'Install dependencies', run: usingYarn ? 'yarn install --immutable' : 'npm ci' },
+							{ name: 'Install dependencies', run: usingYarn ? 'yarn install --immutable' : 'npm ci' },
 
-						pkg.getScript('build')
-							? {
-									name: 'Build',
-									run: `${scriptRunCmd} build ${usingYarn ? '' : '-- '}--noEmit`,
-							  }
-							: undefined,
-						pkg.getScript('test') ? { name: 'Test', run: `${scriptRunCmd} lint` } : undefined,
-						pkg.getScript('lint') ? { name: 'Lint', run: `${scriptRunCmd} lint` } : undefined,
-					],
+							pkg.getScript('build')
+								? {
+										name: 'Build',
+										run: `${scriptRunCmd} build ${usingYarn ? '' : '-- '}--noEmit`,
+								  }
+								: undefined,
+							pkg.getScript('test') ? { name: 'Test', run: `${scriptRunCmd} lint` } : undefined,
+							pkg.getScript('lint') ? { name: 'Lint', run: `${scriptRunCmd} lint` } : undefined,
+						],
+					},
 				},
-			},
-		})
+			}),
+		)
 		.save();
 	format(['.github/workflows/main.yml']);
 };

@@ -2,6 +2,8 @@ import { spawnSync } from 'child_process';
 import { Stats, statSync } from 'fs';
 import { packageJson } from 'mrm-core';
 
+type ArrayOrObject = unknown[] | Record<PropertyKey, unknown>;
+
 const PackagePropertiesOrder = [
 	'name',
 	'description',
@@ -25,6 +27,27 @@ const PackagePropertiesOrder = [
 	'jest',
 	'keywords',
 ];
+
+function* cleanArray(array: unknown[]): Generator {
+	for (const value of array) {
+		// eslint-disable-next-line eqeqeq
+		if (value != undefined) {
+			yield typeof value === 'object' ? cleanObjectOrArray(value as ArrayOrObject) : value;
+		}
+	}
+}
+
+function* cleanObject(object: Record<PropertyKey, unknown>): Generator<unknown[]> {
+	for (const entry of cleanArray(Object.entries(object)) as Iterable<unknown[]>) {
+		if (entry.length === 2) {
+			yield entry;
+		}
+	}
+}
+
+export function cleanObjectOrArray(object: ArrayOrObject): ArrayOrObject {
+	return Array.isArray(object) ? [...cleanArray(object)] : Object.fromEntries(cleanObject(object));
+}
 
 export function execCommand(command: string, args: string[] = []): void {
 	spawnSync(command, args, {
