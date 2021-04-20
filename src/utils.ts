@@ -26,8 +26,8 @@ const PackagePropertiesOrder = [
 	'keywords',
 ];
 
-export function cleanObject<T extends Record<string | number | symbol, unknown>>(object: T): T {
-	const finalObject: Record<string | number | symbol, any> = {};
+export function cleanObject<T extends Record<PropertyKey, unknown>>(object: T): T {
+	const finalObject: Record<PropertyKey, any> = {};
 
 	for (const [keys, value] of deepIterOverObject(object)) {
 		const lastKey = keys.pop()!;
@@ -51,12 +51,12 @@ export function cleanObject<T extends Record<string | number | symbol, unknown>>
 }
 
 export function* deepIterOverObject(
-	object: Record<string | number | symbol, unknown>,
+	object: Record<PropertyKey, unknown>,
 	trailingKeys: string[] = [],
 ): Generator<readonly [[...string[]], unknown]> {
 	for (const [key, value] of Object.entries(object)) {
 		if (typeof value === 'object' && !Array.isArray(value)) {
-			yield* deepIterOverObject(value as Record<string | number | symbol, unknown>, [...trailingKeys, key]);
+			yield* deepIterOverObject(value as Record<PropertyKey, unknown>, [...trailingKeys, key]);
 		} else {
 			yield [[...trailingKeys, key], value];
 		}
