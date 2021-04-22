@@ -23,8 +23,9 @@ const PackagePropertiesOrder = [
 	'dependencies',
 	'peerDependencies',
 	'devDependencies',
-	'files',
 	'jest',
+	'binary',
+	'files',
 	'keywords',
 ];
 
@@ -102,9 +103,13 @@ export function isUsingYarnBerry(): boolean {
 	return fsStat('.yarnrc.yml')?.isFile() ?? false;
 }
 
-export function install(dependencies: string[]): void {
+export function install(dependencies: string[], development = true): void {
 	const usingYarn = isUsingYarn() || isUsingYarnBerry();
-	execCommand(usingYarn ? 'yarn' : 'npm', ['add', usingYarn ? '-D' : '--save-dev', ...dependencies]);
+	const args = ['add', ...dependencies];
+	if (development) {
+		args.push(usingYarn ? '-D' : '--save-dev');
+	}
+	execCommand(usingYarn ? 'yarn' : 'npm', args);
 }
 
 export function inquirerRequired(input: string | undefined): boolean {
