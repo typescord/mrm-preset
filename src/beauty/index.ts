@@ -39,7 +39,7 @@ module.exports = function task() {
 	yaml('.eslintrc.yml')
 		.merge({
 			root: true,
-			extends: ['@typescord', 'plugin:prettier/recommended', 'prettier/@typescript-eslint'],
+			extends: ['@typescord', 'plugin'],
 			plugins: ['prettier'],
 			parserOptions: tsConfigExists ? { project: 'tsconfig.json' } : undefined,
 			rules: { 'prettier/prettier': 'error' },
