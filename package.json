@@ -1,7 +1,7 @@
 {
   "name": "@typescord/mrm-preset",
   "description": "MRM preset used by Typescord for all core packages",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "main": "build/config.json",
   "prettier": "@typescord/prettier-config",
   "scripts": {

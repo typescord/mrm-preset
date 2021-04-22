@@ -1,5 +1,13 @@
 # Changelog
 
+### [2.1.2](https://www.github.com/typescord/mrm-preset/compare/v2.1.1...v2.1.2) (2021-04-22)
+
+
+### Bug Fixes
+
+* **package:** node engine version ([940cd2f](https://www.github.com/typescord/mrm-preset/commit/940cd2f8885b09eca9756361590103f94e4d355f))
+* **prettier config:** with eslint-prettier-config 8.0.0 ([#13](https://www.github.com/typescord/mrm-preset/issues/13)) ([92a7612](https://www.github.com/typescord/mrm-preset/commit/92a7612de6c816289dcb8f56b1e8e05453cc974c))
+
 ### [2.1.1](https://www.github.com/typescord/mrm-preset/compare/v2.1.0...v2.1.1) (2021-04-20)
 
 
